@@ -1,5 +1,5 @@
 import axios from "axios";
-const api="https://anyware-backend-cadqhxgo5-mohamed-salamas-projects-ee33a6a6.vercel.app"
+const api="https://anyware-backend-3xo07g96k-mohamed-salamas-projects-ee33a6a6.vercel.app"
 
 export const listQuizesAPI=async()=>{
     const response=await axios.get(`${api}/listQuizes`);
