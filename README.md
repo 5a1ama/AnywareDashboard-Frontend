@@ -8,7 +8,7 @@
 [MongoDB]: https://img.shields.io/badge/MongoDB-47A248?style=for-the-badge&logo=mongodb&logoColor=white
 [MongoDB-url]: https://www.mongodb.com/
 
-### Built With
+### Full-stack Project Built With
 
 This Project was built using MERN stack
 
@@ -19,7 +19,7 @@ This Project was built using MERN stack
 
 ---
 
-### Installation for the full-stack project
+### Installation For Full-stack Project
 1. Clone this repo for the frontend
    ```sh
    git clone https://github.com/5a1ama/StudentDashboard-Frontend
