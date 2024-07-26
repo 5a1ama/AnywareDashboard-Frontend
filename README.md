@@ -48,4 +48,3 @@ This Project was built using MERN stack
    ```sh
    nodemon app.ts
    ```
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
