@@ -1,5 +1,5 @@
 import axios from "axios";
-const api="https://studentdashboard-backend.onrender.com"
+const api="https://anywaredashboard-backend.onrender.com"
 
 export const loginAPI=async (email: string, password: string)=>{
   try {
