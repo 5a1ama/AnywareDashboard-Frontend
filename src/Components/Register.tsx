@@ -76,24 +76,24 @@ const Register = () => {
             variant="outlined"
             margin="normal"
             required
-            id="email"
-            label="Email Address"
-            name="email"
-            autoComplete="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            sx={{width:'90%', backgroundColor:'whitesmoke'}}
-          />
-          <TextField
-            variant="outlined"
-            margin="normal"
-            required
             id="phone"
             label="Phone Number"
             name="phone"
             autoComplete="tel"
             value={phone}
             onChange={(e) => setPhone(e.target.value)}
+            sx={{width:'90%', backgroundColor:'whitesmoke'}}
+          />
+                    <TextField
+            variant="outlined"
+            margin="normal"
+            required
+            id="email"
+            label="Email Address"
+            name="email"
+            autoComplete="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
             sx={{width:'90%', backgroundColor:'whitesmoke'}}
           />
           <TextField
