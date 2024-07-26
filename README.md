@@ -19,7 +19,7 @@ This Project was built using MERN stack
 
 ---
 
-### Installation
+### Installation for the full-stack project
 1. Clone this repo for the frontend
    ```sh
    git clone https://github.com/5a1ama/StudentDashboard-Frontend
