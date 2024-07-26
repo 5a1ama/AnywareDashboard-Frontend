@@ -6,7 +6,7 @@ const Feed = () => {
 
   return (
     <Box flex={2}>
-        <Stack spacing={3} justifyContent={"space-between"}>
+        <Stack spacing={2} justifyContent={"space-between"}>
             <ExamsTime/>
             <Data/>
         </Stack>

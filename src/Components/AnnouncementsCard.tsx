@@ -15,10 +15,10 @@ const AnnouncementsCard = () => {
         },[])
 
   return (
-    <Box flex={3} borderRadius='20px' bgcolor='white' sx={{paddingTop:'20px', paddingLeft:'20px', overflowY:'auto', height:'520px'}}>
+    <Box flex={3} borderRadius='20px' bgcolor='white' sx={{paddingTop:'20px', paddingLeft:'20px', overflowY:'auto', maxHeight:'54vh'}}>
             <Typography variant='h4' marginBottom={4}>Announcements</Typography>
             {allAnnouncements.length > 0 && allAnnouncements.map((announcement: any)=> 
-            <Box display="flex" flexDirection="row" justifyContent="center" alignItems="center" marginBottom={3} sx={{}}>
+            <Box display="flex" flexDirection="row" justifyContent="center" alignItems="center" marginBottom={3}>
                 <PersonIcon sx={{marginRight:'15px' , fontSize:50}}/>
                 <Box flex={1.3}>
                     <Typography variant='body1' color="text.primary"> 
