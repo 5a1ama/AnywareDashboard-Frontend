@@ -17,7 +17,7 @@ const QuizesCard = () => {
     <Box borderRadius='20px' flex={1} bgcolor='white' sx={{ paddingTop:'20px', paddingLeft:'20px', overflowY:'auto' , maxHeight:'54vh'}}>
           <Typography variant='h4' >What's due</Typography>
           {allQuizes.length > 0 && allQuizes.map((quiz: any)=> 
-          <Card sx={{  minWidth: 275, marginBottom:'30px', marginTop:'10px', width:'90%'}}>
+          <Card sx={{  minWidth: 275, marginBottom:'30px', marginTop:'10px', width:'95%'}}>
           <CardContent sx={{margin:'20px'}}>
             <Typography sx={{ mb: 1.5 }} variant="h5" component="div">
               {quiz.title}
