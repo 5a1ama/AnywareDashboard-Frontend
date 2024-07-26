@@ -8,6 +8,16 @@
 [MongoDB]: https://img.shields.io/badge/MongoDB-47A248?style=for-the-badge&logo=mongodb&logoColor=white
 [MongoDB-url]: https://www.mongodb.com/
 
+### Deployed Full-stack Project Link
+
+- https://student-dashboard-frontend-one.vercel.app
+
+Frontend repo deployed on [Vercel.com](https://vercel.com/)
+<br/>
+Backend repo deployed on [Render.com](https://render.com/)
+
+Here is the deployed backend url for APIs: https://studentdashboard-backend.onrender.com
+
 ### Full-stack Project Built With
 
 This Project was built using MERN stack
@@ -36,15 +46,11 @@ This Project was built using MERN stack
    ```sh
    git clone https://github.com/5a1ama/StudentDashboard-Backend
    ```
-2. Open terminal and install NPM packages
+5. Open terminal and install NPM packages
    ```sh
    npm install 
    ```
-3. Navigate to src
-   ```sh
-   cd src
-   ```
-4. Start the backend application 
+6. Start the backend application 
    ```sh
    nodemon app.ts
    ```
