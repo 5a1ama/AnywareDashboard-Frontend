@@ -9,6 +9,7 @@ const Register = () => {
 
   const navigate = useNavigate();
   
+  const [disappearButton, setDisappearButton] = useState(false);
   const [name, setName] = useState('');
   const [phone, setPhone] = useState('');
   const [email, setEmail] = useState('');
@@ -18,13 +19,21 @@ const Register = () => {
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     try {
+      setDisappearButton(true);
       const response = await registerAPI(name, phone, email, password);
       if(response.status === 201)
       {
-        setMessage('Registration successful');
+        alert('Registration successful');
         navigate('/login')
+        setDisappearButton(false);
+      }
+      else
+      {
+        setDisappearButton(false);
+        setMessage(response?.data)
       }
     } catch (error: any) {
+        setDisappearButton(false);
         setMessage(error?.response?.data)
     }
   };
@@ -110,6 +119,7 @@ const Register = () => {
             sx={{width:'90%', backgroundColor:'whitesmoke'}}
           />
           <Button
+            disabled={disappearButton}
             type="submit"
             variant="contained"
             color="primary"

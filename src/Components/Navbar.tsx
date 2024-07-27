@@ -81,9 +81,9 @@ function Navbar() {
       async function getUsername(){
         setUsername((await verifyTokenAPI()).name)
       }
-
-      if(localStorage.length !== 0)
-          getUsername();
+      const data = localStorage.getItem("token")
+      if(data)
+        getUsername();
       },[])
 
   //const navigate = useNavigate();

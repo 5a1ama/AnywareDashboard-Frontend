@@ -9,6 +9,7 @@ import HomeIcon from '@mui/icons-material/Home';
 
   const navigate = useNavigate();
 
+  const [disappearButton, setDisappearButton] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
@@ -16,15 +17,22 @@ import HomeIcon from '@mui/icons-material/Home';
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     try {
+      setDisappearButton(true);
       const response = await loginAPI(email, password);
       if(response.status === 201)
-        {
-          localStorage.setItem("token", response.data);
-          setMessage('Login successful');
-          navigate('/dashboard')
-        }
+      {
+        localStorage.setItem("token", response.data);
+        navigate('/dashboard')
+        setDisappearButton(false);
+      }
+      else
+      {
+        setDisappearButton(false);
+        setMessage(response?.data)
+      }
     } 
     catch (error: any) {
+      setDisappearButton(false);
       setMessage(error?.response?.data)
     }
   };
@@ -85,6 +93,7 @@ import HomeIcon from '@mui/icons-material/Home';
             sx={{width:'90%', backgroundColor:'whitesmoke'}}
           />
           <Button
+            disabled={disappearButton}
             type="submit"
             variant="contained"
             color="primary"
