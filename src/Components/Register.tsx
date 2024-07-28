@@ -84,7 +84,7 @@ const Register = () => {
           backgroundColor:'rgba(0, 0, 0, 0.15)',
           backdropFilter: 'blur(10px)',
           width:{xs:'80%', sm:'35%'},
-          height:{xs:'55%', sm:'55%'},
+          height:{xs:'55%', sm:'60%'},
           pt:'10px',
           pb:'10px'
          }}>

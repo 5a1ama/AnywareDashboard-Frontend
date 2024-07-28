@@ -66,7 +66,7 @@ import { useTranslation } from 'react-i18next';
           backgroundColor:'rgba(0, 0, 0, 0.15)',
           backdropFilter: 'blur(10px)',
           width:{xs:'80%', sm:'35%'},
-          height:{xs:'35%', sm:'35%'},
+          height:{xs:'35%', sm:'45%'},
           pt:'10px',
           pb:'10px'
          }}>
