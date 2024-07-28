@@ -44,6 +44,7 @@ const Register = () => {
       else
       {
         setIsValid(false);
+        setMessage("");
       }
     } 
     catch (error: any) {
@@ -116,7 +117,7 @@ const Register = () => {
             onChange={(e) => setPhone(e.target.value)}
             sx={{width:'90%', backgroundColor:'whitesmoke'}}
           />
-                    <TextField
+            <TextField
             variant="outlined"
             margin="normal"
             required
@@ -151,7 +152,7 @@ const Register = () => {
             {t('REGISTER')}
           </Button>
           {message && (
-            <Alert severity={message.includes('successful') ? 'success' : 'error'}>{message}</Alert>
+            <Alert severity={'error'}>{message}</Alert>
           )}
           {!isValid && (
             <Alert severity={'error'}>Please enter a valid @gmail.com email address</Alert>

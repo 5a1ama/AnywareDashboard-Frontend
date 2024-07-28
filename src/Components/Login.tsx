@@ -109,7 +109,7 @@ import { useTranslation } from 'react-i18next';
             {t('LOGIN')}
           </Button>
           {message && (
-            <Alert severity={message.includes('successful') ? 'success' : 'error'}>{message}</Alert>
+            <Alert severity={'error'}>{message}</Alert>
           )}
         </Box>
     </Box>
