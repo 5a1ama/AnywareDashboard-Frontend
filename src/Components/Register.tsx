@@ -4,10 +4,14 @@ import { registerAPI } from '../API/usersAPI';
 import { useNavigate } from 'react-router-dom';
 import RegisterImage from '../Images/RegisterLoginImage.jpg'
 import HomeIcon from '@mui/icons-material/Home';
+import { useTranslation } from 'react-i18next';
+import LanguagesButtons from './LanguagesButtons';
 
 const Register = () => {
 
   const navigate = useNavigate();
+
+  const { t } = useTranslation();
   
   const [disappearButton, setDisappearButton] = useState(false);
   const [name, setName] = useState('');
@@ -15,27 +19,43 @@ const Register = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
+  const [isValid, setIsValid] = useState(true);
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     try {
-      setDisappearButton(true);
-      const response = await registerAPI(name, phone, email, password);
-      if(response.status === 201)
+      if(validateEmail(email))
       {
-        alert('Registration successful');
-        navigate('/login')
-        setDisappearButton(false);
+        setIsValid(true);
+        setDisappearButton(true);
+        const response = await registerAPI(name, phone, email, password);
+        if(response.status === 201)
+        {
+          alert('Registration successful');
+          navigate('/login')
+          setDisappearButton(false);
+        }
+        else
+        {
+          setDisappearButton(false);
+          setMessage(response?.data)
+        }
       }
       else
       {
-        setDisappearButton(false);
-        setMessage(response?.data)
+        setIsValid(false);
       }
-    } catch (error: any) {
+    } 
+    catch (error: any) {
         setDisappearButton(false);
         setMessage(error?.response?.data)
     }
+  };
+
+  const validateEmail = (value: string) => {
+    // Regex to check if email ends with @gmail.com
+    const gmailRegex = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
+    return gmailRegex.test(value);
   };
 
   
@@ -54,9 +74,12 @@ const Register = () => {
       width: '100vw',
       height: '100vh',
     }}>
-      <IconButton onClick={handleClick} sx={{ position:'absolute', top:'10px' , left:'15px'}}>
+      <IconButton onClick={handleClick} sx={{ position:'absolute', top:'5px' , left:'15px'}}>
           <HomeIcon sx={{ fontSize: {xs:'80px', sm:'110px'}, color:'black'}}/>
       </IconButton>
+      <Box sx={{ position:'absolute', top:'10px' , right:'15px'}}>
+          <LanguagesButtons />
+      </Box>
       <Box component="form" onSubmit={handleSubmit} sx={{ mt: 1, display: 'flex', flexDirection: 'column',alignItems: 'center', justifyContent:'center',
           backgroundColor:'rgba(0, 0, 0, 0.15)',
           backdropFilter: 'blur(10px)',
@@ -66,14 +89,14 @@ const Register = () => {
           pb:'10px'
          }}>
         <Typography variant="h3" sx={{ fontSize:{xs:'50px', sm:'70px'}}}>
-          Register
+          {t('REGISTER')}
         </Typography>
           <TextField
             variant="outlined"
             margin="normal"
             required
             id="name"
-            label="Name"
+            label={t('NAME')}
             name="name"
             autoComplete="name"
             autoFocus
@@ -86,7 +109,7 @@ const Register = () => {
             margin="normal"
             required
             id="phone"
-            label="Phone Number"
+            label={t('PHONE')}
             name="phone"
             autoComplete="tel"
             value={phone}
@@ -98,7 +121,7 @@ const Register = () => {
             margin="normal"
             required
             id="email"
-            label="Email Address"
+            label={t('EMAIL')}
             name="email"
             autoComplete="email"
             value={email}
@@ -110,7 +133,7 @@ const Register = () => {
             margin="normal"
             required
             name="password"
-            label="Password"
+            label={t('PASSWORD')}
             type="password"
             id="password"
             autoComplete="current-password"
@@ -125,10 +148,13 @@ const Register = () => {
             color="secondary"
             sx={{ mb: 2 , mt:2,  fontSize:{xs:'22px', sm:'25px'}, width:{xs:'40%', sm:'30%'}}}
           >
-            Register
+            {t('REGISTER')}
           </Button>
           {message && (
             <Alert severity={message.includes('successful') ? 'success' : 'error'}>{message}</Alert>
+          )}
+          {!isValid && (
+            <Alert severity={'error'}>Please enter a valid @gmail.com email address</Alert>
           )}
       </Box>
     </Box>

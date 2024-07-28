@@ -3,8 +3,11 @@ import { useEffect } from 'react'
 import { useAppDispatch, useAppSelector } from '../Redux/hooks';
 import { RootState } from '../Redux/store';
 import { fetchQuizes } from '../Redux/Slices/quizesSlice';
+import { useTranslation } from 'react-i18next';
 
 const QuizesCard = () => {
+
+  const { t } = useTranslation();
 
   const dispatch = useAppDispatch();
   const allQuizes = useAppSelector((state: RootState) => state.quizes.data);
@@ -17,8 +20,8 @@ const QuizesCard = () => {
   }, [status, dispatch]);
 
   return (
-    <Box borderRadius='20px' flex={1} bgcolor='white' sx={{ paddingTop:'20px', paddingLeft:'20px', overflowY:'auto' , maxHeight:'54vh'}}>
-          <Typography variant='h4' >What's due</Typography>
+    <Box borderRadius='20px' flex={1} bgcolor='white' sx={{ paddingTop:'20px', paddingLeft:'20px', overflowY:'auto' , maxHeight:'50vh'}}>
+          <Typography variant='h4' >{t('DUE')}</Typography>
           {allQuizes.length > 0 && allQuizes.map((quiz: any)=> 
           <Card sx={{  minWidth: 275, marginBottom:'30px', marginTop:'10px', width:'95%'}}>
           <CardContent sx={{margin:'20px'}}>

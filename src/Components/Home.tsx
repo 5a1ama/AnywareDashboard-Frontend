@@ -1,8 +1,13 @@
 import { useNavigate } from 'react-router-dom';
 import { Box, Button , Typography } from '@mui/material';
 import HomeImage from '../Images/HomeImage.jpg'
+import { useTranslation } from 'react-i18next';
+import LanguagesButtons from './LanguagesButtons'
 
 const Home = () => {
+
+  const { t } = useTranslation();
+
   const navigate = useNavigate();
 
   const handleLoginClick = () => {
@@ -24,6 +29,9 @@ const Home = () => {
       width: '100vw',
       height: '100vh',
     }}>
+      <Box sx={{ position:'absolute', top:'10px' , right:'15px'}}>
+        <LanguagesButtons />
+      </Box>
       <Box
         sx={{
           display: 'flex',
@@ -37,7 +45,7 @@ const Home = () => {
         }}
       >
         <Typography variant="h3" sx={{ fontSize:{xs:'50px', sm:'70px'}}}>
-          HOME
+          {t('HOME')}
         </Typography>
           <Button
             variant="contained"
@@ -46,7 +54,7 @@ const Home = () => {
             size='large'
             onClick={handleLoginClick}
           >
-            Login
+            {t('LOGIN')}
           </Button>
           <Button
             variant="contained"
@@ -55,7 +63,7 @@ const Home = () => {
             size='large'
             onClick={handleRegisterClick}
           >
-            Register
+            {t('REGISTER')}
           </Button>
       </Box>
     </Box>

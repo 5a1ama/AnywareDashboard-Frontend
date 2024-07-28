@@ -1,10 +1,11 @@
-import { AppBar, Avatar, Badge, Box, Button, IconButton, InputBase, Menu, MenuItem, Toolbar, Typography, alpha, styled } from '@mui/material'
+import { AppBar, Avatar, Badge, Box, IconButton, InputBase, Menu, MenuItem, Toolbar, Typography, alpha, styled } from '@mui/material'
 import { Mail, Notifications } from "@mui/icons-material";
 import SearchIcon from '@mui/icons-material/Search';
 import { useEffect, useState } from "react";
 import { verifyTokenAPI } from '../API/usersAPI';
 import MenuIcon from '@mui/icons-material/Menu';
-import Sidebar from './Sidebar';
+import { useTranslation } from 'react-i18next';
+import LanguagesButtons from './LanguagesButtons';
 
 
 const StyledToolbar = styled(Toolbar)({
@@ -80,6 +81,22 @@ const UserBox = styled(Box)(({ theme }) => ({
 
 function Navbar() {
 
+  const { t } = useTranslation();
+  const lang = localStorage.getItem("i18nextLng");
+
+  const [isEnglish, setIsEnglish] = useState(false);
+
+  useEffect(() => {
+    if (lang === "en-US" || lang === "en") 
+    {
+      setIsEnglish(true);
+    }
+    else
+    {
+      setIsEnglish(false);
+    }
+  }, [lang]);
+
   //useState and useEffect for user name
   const[username,setUsername]=useState('');
   useEffect(()=>{
@@ -91,13 +108,11 @@ function Navbar() {
         getUsername();
       },[])
 
-  //const navigate = useNavigate();
   const [open, setOpen] = useState(false);
 
   const handleLogout = () => {
     localStorage.removeItem("token");
     window.location.reload();
-    //navigate('/');
   };
 
   const sidebarClick = () => {
@@ -107,7 +122,7 @@ function Navbar() {
   return (
     <AppBar position='sticky'>
       <StyledToolbar>
-        <Typography variant='h4' sx={{display: {xs:"none", sm:"block"}}}>Welcome {username}</Typography>
+        <Typography variant='h4' sx={{display: {xs:"none", sm:"block"}}}>{t('WELCOME')} {username}</Typography>
         <IconButton onClick={sidebarClick} sx={{display:{xs:'block', sm:'none'}, color:'white'}}>
           <MenuIcon fontSize='large'/>
         </IconButton>
@@ -119,6 +134,9 @@ function Navbar() {
             placeholder="Search…"
             inputProps={{ 'aria-label': 'search' }}/>
         </Search>
+        <Box>
+          <LanguagesButtons />
+        </Box>  
         <Icons>
           <Badge badgeContent={4} color="error">
             <Mail />
@@ -139,7 +157,7 @@ function Navbar() {
           />
         </UserBox>
       </StyledToolbar>
-      <Menu
+      {isEnglish && <Menu
         id="demo-positioned-menu"
         aria-labelledby="demo-positioned-button"
         open={open}
@@ -153,10 +171,28 @@ function Navbar() {
           horizontal: 'right',
         }}
       >
-        <MenuItem>Profile</MenuItem>
-        <MenuItem>Settings</MenuItem>
-        <MenuItem onClick={handleLogout}>Logout</MenuItem>
-      </Menu>
+        <MenuItem>{t('PROFILE')}</MenuItem>
+        <MenuItem>{t('SETTINGS')}</MenuItem>
+        <MenuItem onClick={handleLogout}>{t('LOGOUT')}</MenuItem>
+      </Menu>}
+      {!isEnglish && <Menu
+        id="demo-positioned-menu"
+        aria-labelledby="demo-positioned-button"
+        open={open}
+        onClose={(e) => setOpen(false)}
+        anchorOrigin={{
+          vertical: 'top',
+          horizontal: 'left',
+        }}
+        transformOrigin={{
+          vertical: 'top',
+          horizontal: 'left',
+        }}
+      >
+        <MenuItem>{t('PROFILE')}</MenuItem>
+        <MenuItem>{t('SETTINGS')}</MenuItem>
+        <MenuItem onClick={handleLogout}>{t('LOGOUT')}</MenuItem>
+      </Menu>}
     </AppBar>
   )
 }

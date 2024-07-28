@@ -4,8 +4,12 @@ import { loginAPI } from '../API/usersAPI';
 import { useNavigate } from 'react-router-dom';
 import LoginImage from '../Images/RegisterLoginImage.jpg'
 import HomeIcon from '@mui/icons-material/Home';
+import LanguagesButtons from './LanguagesButtons';
+import { useTranslation } from 'react-i18next';
 
   const Login = () => {
+
+  const { t } = useTranslation();
 
   const navigate = useNavigate();
 
@@ -52,9 +56,12 @@ import HomeIcon from '@mui/icons-material/Home';
       width: '100vw',
       height: '100vh',
     }}>
-        <IconButton onClick={handleClick} sx={{ position:'absolute', top:'10px' , left:'15px'}}>
+        <IconButton onClick={handleClick} sx={{ position:'absolute', top:'5px' , left:'15px'}}>
           <HomeIcon sx={{ fontSize: {xs:'80px', sm:'110px'}, color:'black'}}/>
         </IconButton>
+        <Box sx={{ position:'absolute', top:'10px' , right:'15px'}}>
+          <LanguagesButtons />
+        </Box>
         <Box component="form" onSubmit={handleSubmit} sx={{ mt: 1, display: 'flex', flexDirection: 'column',alignItems: 'center', justifyContent:'center',
           backgroundColor:'rgba(0, 0, 0, 0.15)',
           backdropFilter: 'blur(10px)',
@@ -64,14 +71,14 @@ import HomeIcon from '@mui/icons-material/Home';
           pb:'10px'
          }}>
           <Typography  variant="h3" sx={{ fontSize:{xs:'50px', sm:'70px'}}}>
-            Login
+            {t('LOGIN')}
           </Typography>
           <TextField
             variant="outlined"
             margin="normal"
             required
             id="email"
-            label="Email Address"
+            label={t('EMAIL')}
             name="email"
             autoComplete="email"
             autoFocus
@@ -84,7 +91,7 @@ import HomeIcon from '@mui/icons-material/Home';
             margin="normal"
             required
             name="password"
-            label="Password"
+            label={t('PASSWORD')}
             type="password"
             id="password"
             autoComplete="current-password"
@@ -99,7 +106,7 @@ import HomeIcon from '@mui/icons-material/Home';
             color="primary"
             sx={{ mb: 2 , mt:2,  fontSize:{xs:'22px', sm:'25px'}, width:{xs:'40%', sm:'30%'}}}
           >
-            Login
+            {t('LOGIN')}
           </Button>
           {message && (
             <Alert severity={message.includes('successful') ? 'success' : 'error'}>{message}</Alert>

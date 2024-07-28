@@ -4,8 +4,11 @@ import { useEffect } from 'react';
 import { fetchAnnouncements } from '../Redux/Slices/announcementsSlice';
 import { RootState } from '../Redux/store';
 import { useAppDispatch, useAppSelector } from '../Redux/hooks';
+import { useTranslation } from 'react-i18next';
 
 const AnnouncementsCard = () => {
+
+  const { t } = useTranslation();
 
   const dispatch = useAppDispatch();
   const allAnnouncements = useAppSelector((state: RootState) => state.announcements.data);
@@ -18,8 +21,8 @@ const AnnouncementsCard = () => {
   }, [status, dispatch]);
 
   return (
-    <Box flex={2.5} borderRadius='20px' bgcolor='white' sx={{paddingTop:'20px', paddingLeft:'20px', overflowY:'auto', maxHeight:'54vh'}}>
-            <Typography variant='h4' marginBottom={4}>Announcements</Typography>
+    <Box flex={2.5} borderRadius='20px' bgcolor='white' sx={{paddingTop:'20px', paddingLeft:'20px', overflowY:'auto', maxHeight:'50vh'}}>
+            <Typography variant='h4' marginBottom={4}>{t('ANNOUNCEMENTS')}</Typography>
             {allAnnouncements.length > 0 && allAnnouncements.map((announcement: any)=> 
             <Box flexDirection="row" marginBottom={3} sx={{display:{xs:'none', sm:'flex'}}}>
                 <PersonIcon sx={{marginRight:'15px' , fontSize:50}}/>

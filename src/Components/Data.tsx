@@ -9,7 +9,7 @@ const Data = () => {
 
   return (
     <Box flex={4}>
-        <Stack direction={isSmUp ? 'row' : 'column'} spacing={3.5} justifyContent={"space-between"} sx={{mr:{xs:2,sm:1.5}}}>
+        <Stack direction={isSmUp ? 'row' : 'column'} spacing={4} justifyContent={"space-between"} sx={{mr:{xs:2,sm:1.5}}}>
             <AnnouncementsCard/>
             <QuizesCard/>
         </Stack>
