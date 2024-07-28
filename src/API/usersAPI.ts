@@ -1,5 +1,5 @@
 import axios from "axios";
-const api="https://anywaredashboard-backend.onrender.com"
+const api="http://localhost:8000"
 
 export const loginAPI=async (email: string, password: string)=>{
   try {

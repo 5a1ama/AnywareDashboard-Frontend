@@ -32,19 +32,17 @@ const Home = () => {
           justifyContent:'center',
           backgroundColor:'rgba(0, 0, 0, 0.15)',
           backdropFilter: 'blur(10px)',
-          width:'35%',
-          height:'35%'
+          width:{xs:'80%', sm:'35%'},
+          height:{xs:'30%', sm:'35%'}
         }}
       >
-        <Typography variant="h3" fontSize='70px'>
+        <Typography variant="h3" sx={{ fontSize:{xs:'50px', sm:'70px'}}}>
           HOME
         </Typography>
-        <Box sx={{ mt: 3 }}>
           <Button
             variant="contained"
             color="primary"
-            fullWidth
-            sx={{ mb: 2 , fontSize:'25px'}}
+            sx={{ mb: 2 , mt:2,  fontSize:{xs:'22px', sm:'25px'}, width:{xs:'60%', sm:'60%'}}}
             size='large'
             onClick={handleLoginClick}
           >
@@ -53,14 +51,12 @@ const Home = () => {
           <Button
             variant="contained"
             color="secondary"
-            fullWidth
-            sx={{ mb: 2 , fontSize:'25px'}}
+            sx={{ mb: 2 , mt:2,  fontSize:{xs:'22px', sm:'25px'}, width:{xs:'60%', sm:'60%'}}}
             size='large'
             onClick={handleRegisterClick}
           >
             Register
           </Button>
-        </Box>
       </Box>
     </Box>
   );

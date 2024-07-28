@@ -1,9 +1,10 @@
-import { AppBar, Avatar, Badge, Box, InputBase, Menu, MenuItem, Toolbar, Typography, alpha, styled } from '@mui/material'
-import LocalGroceryStoreIcon from '@mui/icons-material/LocalGroceryStore';
+import { AppBar, Avatar, Badge, Box, Button, IconButton, InputBase, Menu, MenuItem, Toolbar, Typography, alpha, styled } from '@mui/material'
 import { Mail, Notifications } from "@mui/icons-material";
 import SearchIcon from '@mui/icons-material/Search';
 import { useEffect, useState } from "react";
 import { verifyTokenAPI } from '../API/usersAPI';
+import MenuIcon from '@mui/icons-material/Menu';
+import Sidebar from './Sidebar';
 
 
 const StyledToolbar = styled(Toolbar)({
@@ -23,6 +24,10 @@ const Search = styled('div')(({ theme }) => ({
   marginLeft: 0,
   width: '100%',
   [theme.breakpoints.up('sm')]: {
+    marginLeft: theme.spacing(1),
+    width: 'auto',
+  },
+  [theme.breakpoints.up('xs')]: {
     marginLeft: theme.spacing(1),
     width: 'auto',
   },
@@ -95,11 +100,17 @@ function Navbar() {
     //navigate('/');
   };
 
+  const sidebarClick = () => {
+    
+  };
+
   return (
     <AppBar position='sticky'>
       <StyledToolbar>
         <Typography variant='h4' sx={{display: {xs:"none", sm:"block"}}}>Welcome {username}</Typography>
-        <LocalGroceryStoreIcon  sx={{display: {xs:"block", sm:"none"}}}></LocalGroceryStoreIcon>
+        <IconButton onClick={sidebarClick}>
+          <MenuIcon fontSize='large' sx={{display:{xs:'block', sm:'none', color:'white'}}}/>
+        </IconButton>
         <Search>
           <SearchIconWrapper>
             <SearchIcon />

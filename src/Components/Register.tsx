@@ -54,18 +54,18 @@ const Register = () => {
       width: '100vw',
       height: '100vh',
     }}>
-      <IconButton onClick={handleClick} sx={{ position:'absolute', top:'0px' , left:'10px'}}>
-        <HomeIcon sx={{ fontSize: 100, color:'black'}}/>
+      <IconButton onClick={handleClick} sx={{ position:'absolute', top:'10px' , left:'15px'}}>
+          <HomeIcon sx={{ fontSize: {xs:'80px', sm:'110px'}, color:'black'}}/>
       </IconButton>
       <Box component="form" onSubmit={handleSubmit} sx={{ mt: 1, display: 'flex', flexDirection: 'column',alignItems: 'center', justifyContent:'center',
-        backgroundColor:'rgba(0, 0, 0, 0.15)',
-        backdropFilter: 'blur(10px)',
-        width:'60%',
-        height:'50%',
-        pt:'20px',
-        pb:'20px'
-      }}>
-        <Typography variant="h3" fontSize='60px'>
+          backgroundColor:'rgba(0, 0, 0, 0.15)',
+          backdropFilter: 'blur(10px)',
+          width:{xs:'80%', sm:'35%'},
+          height:{xs:'55%', sm:'55%'},
+          pt:'10px',
+          pb:'10px'
+         }}>
+        <Typography variant="h3" sx={{ fontSize:{xs:'50px', sm:'70px'}}}>
           Register
         </Typography>
           <TextField
@@ -122,8 +122,8 @@ const Register = () => {
             disabled={disappearButton}
             type="submit"
             variant="contained"
-            color="primary"
-            sx={{ mt: 3, mb: 2 , fontSize:'30px' , width:'25%' }}
+            color="secondary"
+            sx={{ mb: 2 , mt:2,  fontSize:{xs:'22px', sm:'25px'}, width:{xs:'40%', sm:'30%'}}}
           >
             Register
           </Button>

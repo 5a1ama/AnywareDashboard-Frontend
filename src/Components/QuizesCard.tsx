@@ -1,17 +1,20 @@
 import { Box, Button, Card, CardActions, CardContent, Divider, Typography } from '@mui/material'
-import { useEffect, useState } from 'react'
-import { listQuizesAPI } from '../API/quizesAPI';
+import { useEffect } from 'react'
+import { useAppDispatch, useAppSelector } from '../Redux/hooks';
+import { RootState } from '../Redux/store';
+import { fetchQuizes } from '../Redux/Slices/quizesSlice';
 
 const QuizesCard = () => {
 
-    //useState and useEffect for quizes
-    const[allQuizes,setAllQuizes]=useState([]);
-    useEffect(()=>{
-        async function listQuizes(){
-          setAllQuizes(await listQuizesAPI())}
-  
-          listQuizes();
-        },[])
+  const dispatch = useAppDispatch();
+  const allQuizes = useAppSelector((state: RootState) => state.quizes.data);
+  const status = useAppSelector((state: RootState) => state.quizes.status);
+
+  useEffect(() => {
+    if (status === 'idle') {
+      dispatch(fetchQuizes());
+    }
+  }, [status, dispatch]);
 
   return (
     <Box borderRadius='20px' flex={1} bgcolor='white' sx={{ paddingTop:'20px', paddingLeft:'20px', overflowY:'auto' , maxHeight:'54vh'}}>

@@ -8,8 +8,7 @@ import CampaignIcon from '@mui/icons-material/Campaign';
 
 function Sidebar() {
   return (
-    <Box position='sticky' height='89.6vh' bgcolor='#96C9F4' flex={0.3} p={2} >
-      {/* <Box position='fixed'> */}
+    <Box position='sticky' height='89.6vh' bgcolor='#96C9F4' flex={0.3} p={2} sx={{display:{xs:'none', sm:'block'}}} >
         <List >
           <ListItem sx={{marginBottom: 8, '&:hover': { backgroundColor: 'white','& .MuiListItemIcon-root, & .MuiListItemText-root': {color: 'black', },},}} disablePadding>
             <ListItemButton  component="a" href="#home">
@@ -60,7 +59,6 @@ function Sidebar() {
             </ListItemButton>
           </ListItem>
         </List>
-      {/* </Box> */}
     </Box>
 
     
