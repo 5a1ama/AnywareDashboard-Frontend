@@ -19,14 +19,10 @@ const Register = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
-  const [isValid, setIsValid] = useState(true);
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     try {
-      if(validateEmail(email))
-      {
-        setIsValid(true);
         setDisappearButton(true);
         const response = await registerAPI(name, phone, email.toLowerCase(), password);
         if(response.status === 201)
@@ -35,17 +31,6 @@ const Register = () => {
           navigate('/login')
           setDisappearButton(false);
         }
-        else
-        {
-          setDisappearButton(false);
-          setMessage(response?.data)
-        }
-      }
-      else
-      {
-        setIsValid(false);
-        setMessage("");
-      }
     } 
     catch (error: any) {
         setDisappearButton(false);
@@ -53,13 +38,6 @@ const Register = () => {
     }
   };
 
-  const validateEmail = (value: string) => {
-    // Regex to check if email ends with @gmail.com
-    const gmailRegex = /^[a-zA-Z0-9._%+-]+@gmail\.com$/;
-    return gmailRegex.test(value);
-  };
-
-  
   const handleClick = () => {
     navigate('/');
   };
@@ -111,10 +89,17 @@ const Register = () => {
             required
             id="phone"
             label={t('PHONE')}
+            type='tel'
             name="phone"
             autoComplete="tel"
             value={phone}
-            onChange={(e) => setPhone(e.target.value)}
+            onChange={(e) =>  {
+              const value = e.target.value;
+              if (/^\d*$/.test(value)) {
+                setPhone(value);
+              }
+            }}
+            
             sx={{width:'90%', backgroundColor:'whitesmoke'}}
           />
             <TextField
@@ -123,6 +108,7 @@ const Register = () => {
             required
             id="email"
             label={t('EMAIL')}
+            type='email'
             name="email"
             autoComplete="email"
             value={email}
@@ -149,13 +135,10 @@ const Register = () => {
             color="secondary"
             sx={{ mb: 2 , mt:2,  fontSize:{xs:'22px', sm:'25px'}, width:{xs:'40%', sm:'30%'}}}
           >
-            {t('REGISTER')}
+            {t('REGISTERBUTTON')}
           </Button>
           {message && (
             <Alert severity={'error'}>{message}</Alert>
-          )}
-          {!isValid && (
-            <Alert severity={'error'}>Please enter a valid @gmail.com email address</Alert>
           )}
       </Box>
     </Box>

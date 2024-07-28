@@ -79,6 +79,7 @@ import { useTranslation } from 'react-i18next';
             required
             id="email"
             label={t('EMAIL')}
+            type='email'
             name="email"
             autoComplete="email"
             autoFocus
@@ -106,7 +107,7 @@ import { useTranslation } from 'react-i18next';
             color="primary"
             sx={{ mb: 2 , mt:2,  fontSize:{xs:'22px', sm:'25px'}, width:{xs:'40%', sm:'30%'}}}
           >
-            {t('LOGIN')}
+            {t('LOGINBUTTON')}
           </Button>
           {message && (
             <Alert severity={'error'}>{message}</Alert>

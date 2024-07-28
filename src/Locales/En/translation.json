@@ -1,7 +1,9 @@
 {
     "HOME": "HOME",
     "LOGIN": "Login",
+    "LOGINBUTTON": "Login",
     "REGISTER": "Register",
+    "REGISTERBUTTON": "Register",
     "EMAIL": "Email Address",
     "PASSWORD": "Password",
     "NAME": "Name",
