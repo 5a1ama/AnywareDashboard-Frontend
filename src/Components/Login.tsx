@@ -22,7 +22,7 @@ import { useTranslation } from 'react-i18next';
     event.preventDefault();
     try {
       setDisappearButton(true);
-      const response = await loginAPI(email, password);
+      const response = await loginAPI(email.toLowerCase(), password);
       if(response.status === 201)
       {
         localStorage.setItem("token", response.data);

@@ -28,7 +28,7 @@ const Register = () => {
       {
         setIsValid(true);
         setDisappearButton(true);
-        const response = await registerAPI(name, phone, email, password);
+        const response = await registerAPI(name, phone, email.toLowerCase(), password);
         if(response.status === 201)
         {
           alert('Registration successful');
