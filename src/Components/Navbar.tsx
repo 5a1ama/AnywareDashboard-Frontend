@@ -108,8 +108,8 @@ function Navbar() {
     <AppBar position='sticky'>
       <StyledToolbar>
         <Typography variant='h4' sx={{display: {xs:"none", sm:"block"}}}>Welcome {username}</Typography>
-        <IconButton onClick={sidebarClick}>
-          <MenuIcon fontSize='large' sx={{display:{xs:'block', sm:'none', color:'white'}}}/>
+        <IconButton onClick={sidebarClick} sx={{display:{xs:'block', sm:'none'}, color:'white'}}>
+          <MenuIcon fontSize='large'/>
         </IconButton>
         <Search>
           <SearchIconWrapper>
@@ -137,7 +137,6 @@ function Navbar() {
             sx={{ width: 30, height: 30 }}
             src="https://images.pexels.com/photos/846741/pexels-photo-846741.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
           />
-          <Typography >Salama</Typography>
         </UserBox>
       </StyledToolbar>
       <Menu
@@ -155,7 +154,7 @@ function Navbar() {
         }}
       >
         <MenuItem>Profile</MenuItem>
-        <MenuItem>My account</MenuItem>
+        <MenuItem>Settings</MenuItem>
         <MenuItem onClick={handleLogout}>Logout</MenuItem>
       </Menu>
     </AppBar>
