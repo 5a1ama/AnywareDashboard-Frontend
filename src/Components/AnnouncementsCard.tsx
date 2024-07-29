@@ -21,7 +21,7 @@ const AnnouncementsCard = () => {
     <Box flex={2.5} borderRadius='20px' bgcolor='white' sx={{paddingTop:'20px', paddingLeft:'20px', overflowY:'auto', maxHeight:'50vh'}}>
             <Typography variant='h4' marginBottom={4}>{t('ANNOUNCEMENTS')}</Typography>
             {allAnnouncements.length > 0 && allAnnouncements.map((announcement: any)=>
-            <Box marginBottom={3} sx={{flexDirection:{xs:'column', sm:'row'} ,display:{xs:'flex', sm:'flex'}, justifyContent:{xs:'center', sm:'start'},  alignItems:{xs:'center', sm:'start'} }}>
+            <Box key={allAnnouncements.indexOf(announcement)} marginBottom={3} sx={{flexDirection:{xs:'column', sm:'row'} ,display:{xs:'flex', sm:'flex'}, justifyContent:{xs:'center', sm:'start'},  alignItems:{xs:'center', sm:'start'} }}>
               <Box display="flex" flexDirection="row" marginBottom={3}>
                   <PersonIcon sx={{marginRight:'15px' , fontSize:50}}/>
                   <Box sx={{ width:{ xs:'35vw ', sm:'9vw'} }}>

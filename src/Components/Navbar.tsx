@@ -82,20 +82,6 @@ const UserBox = styled(Box)(({ theme }) => ({
 function Navbar() {
 
   const { t } = useTranslation();
-  const lang = localStorage.getItem("i18nextLng");
-
-  const [isEnglish, setIsEnglish] = useState(false);
-
-  useEffect(() => {
-    if (lang === "en-US" || lang === "en") 
-    {
-      setIsEnglish(true);
-    }
-    else
-    {
-      setIsEnglish(false);
-    }
-  }, [lang]);
 
   //useState and useEffect for user name
   const[username,setUsername]=useState('');
@@ -108,7 +94,15 @@ function Navbar() {
         getUsername();
       },[])
 
-  const [open, setOpen] = useState(false);
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const open = Boolean(anchorEl);
+  //const [open, setOpen] = useState(false);
+  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
 
   const handleLogout = () => {
     localStorage.removeItem("token");
@@ -147,47 +141,22 @@ function Navbar() {
           <Avatar
             sx={{ width: 30, height: 30 }}
             src="https://images.pexels.com/photos/846741/pexels-photo-846741.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
-            onClick={(e) => setOpen(true)}
+            onClick={handleClick}
           />
         </Icons>
-        <UserBox onClick={(e) => setOpen(true)}>
+        <UserBox onClick={handleClick}>
           <Avatar
             sx={{ width: 30, height: 30 }}
             src="https://images.pexels.com/photos/846741/pexels-photo-846741.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
           />
         </UserBox>
       </StyledToolbar>
-      {isEnglish && <Menu
+      {<Menu
         id="demo-positioned-menu"
         aria-labelledby="demo-positioned-button"
         open={open}
-        onClose={(e) => setOpen(false)}
-        anchorOrigin={{
-          vertical: 'top',
-          horizontal: 'right',
-        }}
-        transformOrigin={{
-          vertical: 'top',
-          horizontal: 'right',
-        }}
-      >
-        <MenuItem>{t('PROFILE')}</MenuItem>
-        <MenuItem>{t('SETTINGS')}</MenuItem>
-        <MenuItem onClick={handleLogout}>{t('LOGOUT')}</MenuItem>
-      </Menu>}
-      {!isEnglish && <Menu
-        id="demo-positioned-menu"
-        aria-labelledby="demo-positioned-button"
-        open={open}
-        onClose={(e) => setOpen(false)}
-        anchorOrigin={{
-          vertical: 'top',
-          horizontal: 'left',
-        }}
-        transformOrigin={{
-          vertical: 'top',
-          horizontal: 'left',
-        }}
+        onClose={handleClose}
+        anchorEl={anchorEl}
       >
         <MenuItem>{t('PROFILE')}</MenuItem>
         <MenuItem>{t('SETTINGS')}</MenuItem>

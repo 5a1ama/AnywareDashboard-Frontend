@@ -20,29 +20,29 @@ const QuizesCard = () => {
     <Box borderRadius='20px' flex={1} bgcolor='white' sx={{ paddingTop:'20px', paddingLeft:'20px', overflowY:'auto' , maxHeight:'50vh'}}>
           <Typography variant='h4' >{t('DUE')}</Typography>
           {allQuizes.length > 0 && allQuizes.map((quiz: any)=> 
-          <Card sx={{  minWidth: 275, marginBottom:'30px', marginTop:'10px', width:'95%'}}>
-          <CardContent sx={{margin:'20px'}}>
-            <Typography sx={{ mb: 1.5 }} variant="h5" component="div">
-              {quiz.title}
-            </Typography>
-            <Divider orientation="horizontal" flexItem />
-            <Typography display="flex" flexDirection="row" sx={{ mb: 1.5 , mt: 1.5}} color="text.secondary">
-              <Typography width='65px'>Course: </Typography> <Typography>{quiz.course}</Typography>
-            </Typography>
-            <Typography display="flex" flexDirection="row" sx={{ mb: 1.5 }} color="text.secondary">
-              <Typography width='65px'>Topic: </Typography> <Typography>{quiz.topic}</Typography>
-            </Typography>
-            <Typography display="flex" flexDirection="row" sx={{ mb: 1.5 }} color="text.secondary">
-              <Typography width='65px'>Due to: </Typography> <Typography>{quiz.dueTo}</Typography>
-            </Typography>
-          </CardContent>
-          <CardActions>
-            <Box display="flex" justifyContent="center" width="100%">
-              <Button variant='outlined' size="large" sx={{color:'#6EACDA', borderWidth: '3px', borderRadius:'10px', fontWeight: 'bold'}}>Start {quiz.title}</Button>
-            </Box>
-          </CardActions>
-        </Card>
-      )}
+          <Card key={allQuizes.indexOf(quiz)} sx={{  minWidth: 275, marginBottom:'30px', marginTop:'10px', width:'95%'}}>
+            <CardContent sx={{margin:'20px'}}>
+              <Typography sx={{ mb: 1.5 }} variant="h5" component="div">
+                {quiz.title}
+              </Typography>
+              <Divider orientation="horizontal" flexItem />
+              <Box display="flex" flexDirection="row" sx={{ mb: 1.5 , mt: 1.5}} color="text.secondary">
+                <Typography width='65px'>Course: </Typography> <Typography>{quiz.course}</Typography>
+              </Box>
+              <Box display="flex" flexDirection="row" sx={{ mb: 1.5 }} color="text.secondary">
+                <Typography width='65px'>Topic: </Typography> <Typography>{quiz.topic}</Typography>
+              </Box>
+              <Box display="flex" flexDirection="row" sx={{ mb: 1.5 }} color="text.secondary">
+                <Typography width='65px'>Due to: </Typography> <Typography>{quiz.dueTo}</Typography>
+              </Box>
+            </CardContent>
+            <CardActions>
+              <Box display="flex" justifyContent="center" width="100%">
+                <Button variant='outlined' size="large" sx={{color:'#6EACDA', borderWidth: '3px', borderRadius:'10px', fontWeight: 'bold'}}>Start {quiz.title}</Button>
+              </Box>
+            </CardActions>
+          </Card>
+        )}
       {allQuizes.length === 0 && 
       <Box display="flex"
       justifyContent="center"

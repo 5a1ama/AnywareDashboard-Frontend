@@ -22,6 +22,11 @@ i18n
     interpolation: {
       escapeValue: false,
     },
+    detection: {
+      // Options for language detection
+      order: ['localStorage', 'navigator'],
+      caches: ['localStorage'],
+    },
   });
 
 export default i18n;
