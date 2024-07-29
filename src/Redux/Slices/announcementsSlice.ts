@@ -10,14 +10,10 @@ export const fetchAnnouncements = createAsyncThunk('announcements/fetchAnnouncem
 
 interface AnnouncementsState {
   data: any[];
-  status: 'idle' | 'loading' | 'succeeded' | 'failed';
-  error: string | null;
 }
 
 const initialState: AnnouncementsState = {
-  data: [],
-  status: 'idle',
-  error: null,
+  data: []
 };
 
 const announcementsSlice = createSlice({
@@ -26,17 +22,13 @@ const announcementsSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(fetchAnnouncements.pending, (state) => {
-        state.status = 'loading';
+      .addCase(fetchAnnouncements.pending, () => {
+        console.log("Announcements Pending...");
       })
-      .addCase(fetchAnnouncements.fulfilled, (state, action) => {
-        state.status = 'succeeded';
+      .addCase(fetchAnnouncements.fulfilled, (state, action: any) => {
         state.data = action.payload;
+        console.log("Announcements Retrieved")
       })
-      .addCase(fetchAnnouncements.rejected, (state, action) => {
-        state.status = 'failed';
-        state.error = action.error.message || null;
-      });
   },
 });
 

@@ -1,23 +1,20 @@
 import { Box, Button, Card, CardActions, CardContent, Divider, Typography } from '@mui/material'
 import { useEffect } from 'react'
-import { useAppDispatch, useAppSelector } from '../Redux/hooks';
-import { RootState } from '../Redux/store';
+import { AppDispatch, RootState } from '../Redux/store';
 import { fetchQuizes } from '../Redux/Slices/quizesSlice';
 import { useTranslation } from 'react-i18next';
+import { useDispatch, useSelector } from 'react-redux';
 
 const QuizesCard = () => {
 
   const { t } = useTranslation();
 
-  const dispatch = useAppDispatch();
-  const allQuizes = useAppSelector((state: RootState) => state.quizes.data);
-  const status = useAppSelector((state: RootState) => state.quizes.status);
-
+  const dispatch = useDispatch<AppDispatch>();
   useEffect(() => {
-    if (status === 'idle') {
       dispatch(fetchQuizes());
-    }
-  }, [status, dispatch]);
+  }, [dispatch]);
+  
+  const allQuizes = useSelector((state: RootState) => state.quizes.data);
 
   return (
     <Box borderRadius='20px' flex={1} bgcolor='white' sx={{ paddingTop:'20px', paddingLeft:'20px', overflowY:'auto' , maxHeight:'50vh'}}>
