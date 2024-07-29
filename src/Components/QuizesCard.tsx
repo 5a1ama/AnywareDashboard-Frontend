@@ -1,7 +1,7 @@
 import { Box, Button, Card, CardActions, CardContent, Divider, Typography } from '@mui/material'
 import { useEffect } from 'react'
 import { AppDispatch, RootState } from '../Redux/store';
-import { fetchQuizes } from '../Redux/Slices/quizesSlice';
+import { listQuizesAPI } from '../Redux/Slices/quizesSlice';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -11,7 +11,7 @@ const QuizesCard = () => {
 
   const dispatch = useDispatch<AppDispatch>();
   useEffect(() => {
-      dispatch(fetchQuizes());
+      dispatch(listQuizesAPI());
   }, [dispatch]);
   
   const allQuizes = useSelector((state: RootState) => state.quizes.data);

@@ -1,7 +1,7 @@
 import { Box, Divider, Typography } from '@mui/material'
 import PersonIcon from '@mui/icons-material/Person';
 import { useEffect } from 'react';
-import { fetchAnnouncements } from '../Redux/Slices/announcementsSlice';
+import { listAnnouncementsAPI } from '../Redux/Slices/announcementsSlice';
 import { AppDispatch, RootState } from '../Redux/store';
 import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
@@ -12,7 +12,7 @@ const AnnouncementsCard = () => {
 
   const dispatch = useDispatch<AppDispatch>();
   useEffect(() => {
-      dispatch(fetchAnnouncements());
+      dispatch(listAnnouncementsAPI());
   }, [dispatch]);
 
   const allAnnouncements = useSelector((state: RootState) => state.announcements.data);

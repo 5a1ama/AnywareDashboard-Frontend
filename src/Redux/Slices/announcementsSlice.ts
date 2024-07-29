@@ -3,7 +3,7 @@ import axios from 'axios';
 
 const api = "http://localhost:8000";
 
-export const fetchAnnouncements = createAsyncThunk('announcements/fetchAnnouncements', async () => {
+export const listAnnouncementsAPI = createAsyncThunk('announcements/listAnnouncementsAPI', async () => {
   const response = await axios.get(`${api}/listAnnouncements`);
   return response.data;
 });
@@ -22,10 +22,10 @@ const announcementsSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(fetchAnnouncements.pending, () => {
+      .addCase(listAnnouncementsAPI.pending, () => {
         console.log("Announcements Pending...");
       })
-      .addCase(fetchAnnouncements.fulfilled, (state, action: any) => {
+      .addCase(listAnnouncementsAPI.fulfilled, (state, action: any) => {
         state.data = action.payload;
         console.log("Announcements Retrieved")
       })

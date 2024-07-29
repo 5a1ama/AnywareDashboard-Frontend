@@ -3,7 +3,7 @@ import axios from 'axios';
 
 const api = "http://localhost:8000";
 
-export const fetchQuizes = createAsyncThunk('quizes/fetchQuizes', async () => {
+export const listQuizesAPI = createAsyncThunk('quizes/listQuizesAPI', async () => {
   const response = await axios.get(`${api}/listQuizes`);
   return response.data;
 });
@@ -22,10 +22,10 @@ const quizesSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(fetchQuizes.pending, () => {
+      .addCase(listQuizesAPI.pending, () => {
         console.log("Quizes Pending...");
       })
-      .addCase(fetchQuizes.fulfilled, (state, action: any) => {
+      .addCase(listQuizesAPI.fulfilled, (state, action: any) => {
         state.data = action.payload;
         console.log("Quizes Retrieved");
       })
